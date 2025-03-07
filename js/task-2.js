@@ -30,15 +30,27 @@ const gallery = document.querySelector(".gallery");
 
 gallery.style.display = "flex";
 gallery.style.flexWrap = "wrap";
+gallery.style.justifyContent = "center";
 gallery.style.listStyleType = "none";
-gallery.style.gap = "10px";
+gallery.style.gap = "24px";
+gallery.style.padding = "0";
+gallery.style.margin = "20px auto";
 
 gallery.insertAdjacentHTML(
   "beforeend",
   images
     .map(
       ({ url, alt }) =>
-        `<li><img src="${url}" alt="${alt}" width="300"></li>`
+        `<li><img src="${url}" alt="${alt}" width="360" height="300"></li>`
     )
     .join("")
 );
+
+document.querySelectorAll(".gallery li").forEach((item) => {
+  item.addEventListener("mouseover", () => {
+    item.style.transform = "scale(1.05)";
+  });
+  item.addEventListener("mouseout", () => {
+    item.style.transform = "scale(1)";
+  });
+});
